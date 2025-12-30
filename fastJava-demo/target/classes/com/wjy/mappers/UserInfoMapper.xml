@@ -370,10 +370,10 @@
 	<update id="updateByUserId" parameterType="com.wjy.entity.po.UserInfo">
 		update user_info
 		<set>
-			<if test="bean.user_id != null">
+			<if test="bean.userId != null">
 				user_id = #{bean.userId},
 			</if>
-			<if test="bean.nick_name != null">
+			<if test="bean.nickName != null">
 				nick_name = #{bean.nickName},
 			</if>
 			<if test="bean.email != null">
@@ -391,28 +391,28 @@
 			<if test="bean.school != null">
 				school = #{bean.school},
 			</if>
-			<if test="bean.person_introduction != null">
+			<if test="bean.personIntroduction != null">
 				person_introduction = #{bean.personIntroduction},
 			</if>
-			<if test="bean.join_time != null">
+			<if test="bean.joinTime != null">
 				join_time = #{bean.joinTime},
 			</if>
-			<if test="bean.last_login_time != null">
+			<if test="bean.lastLoginTime != null">
 				last_login_time = #{bean.lastLoginTime},
 			</if>
-			<if test="bean.last_login_ip != null">
+			<if test="bean.lastLoginIp != null">
 				last_login_ip = #{bean.lastLoginIp},
 			</if>
 			<if test="bean.status != null">
 				status = #{bean.status},
 			</if>
-			<if test="bean.notice_info != null">
+			<if test="bean.noticeInfo != null">
 				notice_info = #{bean.noticeInfo},
 			</if>
-			<if test="bean.total_coin_count != null">
+			<if test="bean.totalCoinCount != null">
 				total_coin_count = #{bean.totalCoinCount},
 			</if>
-			<if test="bean.current_coin_count != null">
+			<if test="bean.currentCoinCount != null">
 				current_coin_count = #{bean.currentCoinCount},
 			</if>
 			<if test="bean.theme != null">
@@ -437,10 +437,10 @@
 	<update id="updateByEmail" parameterType="com.wjy.entity.po.UserInfo">
 		update user_info
 		<set>
-			<if test="bean.user_id != null">
+			<if test="bean.userId != null">
 				user_id = #{bean.userId},
 			</if>
-			<if test="bean.nick_name != null">
+			<if test="bean.nickName != null">
 				nick_name = #{bean.nickName},
 			</if>
 			<if test="bean.email != null">
@@ -458,28 +458,28 @@
 			<if test="bean.school != null">
 				school = #{bean.school},
 			</if>
-			<if test="bean.person_introduction != null">
+			<if test="bean.personIntroduction != null">
 				person_introduction = #{bean.personIntroduction},
 			</if>
-			<if test="bean.join_time != null">
+			<if test="bean.joinTime != null">
 				join_time = #{bean.joinTime},
 			</if>
-			<if test="bean.last_login_time != null">
+			<if test="bean.lastLoginTime != null">
 				last_login_time = #{bean.lastLoginTime},
 			</if>
-			<if test="bean.last_login_ip != null">
+			<if test="bean.lastLoginIp != null">
 				last_login_ip = #{bean.lastLoginIp},
 			</if>
 			<if test="bean.status != null">
 				status = #{bean.status},
 			</if>
-			<if test="bean.notice_info != null">
+			<if test="bean.noticeInfo != null">
 				notice_info = #{bean.noticeInfo},
 			</if>
-			<if test="bean.total_coin_count != null">
+			<if test="bean.totalCoinCount != null">
 				total_coin_count = #{bean.totalCoinCount},
 			</if>
-			<if test="bean.current_coin_count != null">
+			<if test="bean.currentCoinCount != null">
 				current_coin_count = #{bean.currentCoinCount},
 			</if>
 			<if test="bean.theme != null">
@@ -504,10 +504,10 @@
 	<update id="updateByNickName" parameterType="com.wjy.entity.po.UserInfo">
 		update user_info
 		<set>
-			<if test="bean.user_id != null">
+			<if test="bean.userId != null">
 				user_id = #{bean.userId},
 			</if>
-			<if test="bean.nick_name != null">
+			<if test="bean.nickName != null">
 				nick_name = #{bean.nickName},
 			</if>
 			<if test="bean.email != null">
@@ -525,28 +525,28 @@
 			<if test="bean.school != null">
 				school = #{bean.school},
 			</if>
-			<if test="bean.person_introduction != null">
+			<if test="bean.personIntroduction != null">
 				person_introduction = #{bean.personIntroduction},
 			</if>
-			<if test="bean.join_time != null">
+			<if test="bean.joinTime != null">
 				join_time = #{bean.joinTime},
 			</if>
-			<if test="bean.last_login_time != null">
+			<if test="bean.lastLoginTime != null">
 				last_login_time = #{bean.lastLoginTime},
 			</if>
-			<if test="bean.last_login_ip != null">
+			<if test="bean.lastLoginIp != null">
 				last_login_ip = #{bean.lastLoginIp},
 			</if>
 			<if test="bean.status != null">
 				status = #{bean.status},
 			</if>
-			<if test="bean.notice_info != null">
+			<if test="bean.noticeInfo != null">
 				notice_info = #{bean.noticeInfo},
 			</if>
-			<if test="bean.total_coin_count != null">
+			<if test="bean.totalCoinCount != null">
 				total_coin_count = #{bean.totalCoinCount},
 			</if>
-			<if test="bean.current_coin_count != null">
+			<if test="bean.currentCoinCount != null">
 				current_coin_count = #{bean.currentCoinCount},
 			</if>
 			<if test="bean.theme != null">

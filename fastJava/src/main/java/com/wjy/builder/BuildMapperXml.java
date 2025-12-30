@@ -590,7 +590,7 @@ bw.write("\t\t\t" + fieldInfo.getFieldName() + ",");
                 bw.newLine();
 
                 for (FieldInfo fieldInfo : tableInfo.getFieldList()) {
-                    bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                    bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                     bw.newLine();
                     bw.write("\t\t\t\t"+fieldInfo.getFieldName() + " = #{bean." + fieldInfo.getPropertyName() + "},");
                     bw.newLine();

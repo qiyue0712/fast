@@ -91,4 +91,30 @@ public class MapperTest {
         userInfoMapper.insertOrUpdateBatch(userInfoList);
         System.out.println(userInfoList);
     }
+
+    @Test
+    public void selectByKey() {
+        UserInfo userInfo1 = userInfoMapper.selectByUserId("9");
+        UserInfo userInfo2 = userInfoMapper.selectByEmail("13544321312");
+
+        System.out.println(userInfo1);
+        System.out.println(userInfo2);
+    }
+
+    @Test
+    public void updateByKey() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setEmail("update by email");
+        userInfoMapper.updateByEmail(userInfo, "123@test.com");
+
+
+    }
+
+    @Test
+    public void deleteByKey() {
+       userInfoMapper.deleteByEmail("1354432ewe1312e3efe");
+
+
+
+    }
 }
