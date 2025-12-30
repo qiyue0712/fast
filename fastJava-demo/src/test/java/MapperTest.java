@@ -32,7 +32,7 @@ public class MapperTest {
             System.out.println(userInfo);
         }
 
-        Long count = userInfoMapper.selectCount(query);
+        Integer count = userInfoMapper.selectCount(query);
         System.out.println(count);
     }
 

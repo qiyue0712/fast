@@ -1,0 +1,16 @@
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/RunApplication.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/bean/Constants.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/bean/FieldInfo.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/bean/TableInfo.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildBase.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildComment.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildMapper.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildMapperXml.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildPo.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildQuery.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildService.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/builder/BuildTable.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/utils/DateUtils.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/utils/JsonUtils.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/utils/PropertiesUtils.java
+/Users/w7/Desktop/workspace/fastJava/src/main/java/com/wjy/utils/StringUtils.java

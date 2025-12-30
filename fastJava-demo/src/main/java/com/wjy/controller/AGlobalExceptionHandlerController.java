@@ -1,0 +1,63 @@
+package com.wjy.controller;
+
+import com.wjy.enums.ResponseCodeEnum;
+
+import com.wjy.entity.vo.ResponseVO;
+
+import com.wjy.exception.BusinessException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindException;
+import org.springframework.dao.DuplicateKeyException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+@RestControllerAdvice
+public class AGlobalExceptionHandlerController extends ABaseController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AGlobalExceptionHandlerController.class);
+
+    @ExceptionHandler(value = Exception.class)
+    Object handleException(Exception e, HttpServletRequest request) {
+        // 记录错误日志 - 修正占位符错误
+        logger.error("请求错误，请求地址{}，错误信息:", request.getRequestURL(), e);
+        ResponseVO ajaxResponse = new ResponseVO();
+
+        // 404 错误 - 找不到请求处理器
+        if (e instanceof NoHandlerFoundException) {
+            ajaxResponse.setCode(ResponseCodeEnum.CODE_404.getCode());
+            ajaxResponse.setInfo(ResponseCodeEnum.CODE_404.getMsg());
+            ajaxResponse.setStatus(STATUS_ERROR);
+        }
+        // 业务异常
+        else if (e instanceof BusinessException) {
+            BusinessException biz = (BusinessException) e;
+            ajaxResponse.setCode(biz.getCode());
+            ajaxResponse.setInfo(biz.getMessage());
+            ajaxResponse.setStatus(STATUS_ERROR);
+        }
+        // 参数绑定异常（参数类型转换失败）
+        else if (e instanceof BindException) {
+            ajaxResponse.setCode(ResponseCodeEnum.CODE_600.getCode());
+            ajaxResponse.setInfo(ResponseCodeEnum.CODE_600.getMsg());
+            ajaxResponse.setStatus(STATUS_ERROR);
+        }
+        // 主键冲突异常（数据库唯一约束冲突）
+        else if (e instanceof DuplicateKeyException) {
+            ajaxResponse.setCode(ResponseCodeEnum.CODE_601.getCode());
+            ajaxResponse.setInfo(ResponseCodeEnum.CODE_601.getMsg());
+            ajaxResponse.setStatus(STATUS_ERROR);
+        }
+        // 其他所有异常 - 统一返回500服务器内部错误
+        else {
+            ajaxResponse.setCode(ResponseCodeEnum.CODE_500.getCode());
+            ajaxResponse.setInfo(ResponseCodeEnum.CODE_500.getMsg());
+            ajaxResponse.setStatus(STATUS_ERROR);
+        }
+
+        return ajaxResponse;
+    }
+}
