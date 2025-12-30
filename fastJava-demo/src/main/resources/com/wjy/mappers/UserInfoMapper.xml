@@ -263,8 +263,8 @@
 		</trim>
 		<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
 			#{bean.userId},
-			IFNULL(#{bean.nickName}, ''),
-			IFNULL(#{bean.email}, ''),
+			#{bean.nickName},
+			#{bean.email},
 			IFNULL(#{bean.password}, ''),
 			<if test="bean.sex != null">
 				#{bean.sex},
@@ -355,7 +355,7 @@
 	<insert id="insertOrUpdateBatch" parameterType="com.wjy.entity.po.UserInfo">
 		INSERT INTO user_info(user_id,nick_name,email,password,sex,birthday,school,person_introduction,join_time,last_login_time,last_login_ip,status,notice_info,total_coin_count,current_coin_count,theme) VALUES
 		<foreach collection="list" item="item" separator=",">
-			(#{item.userId},IFNULL(#{item.nickName}, ''),IFNULL(#{item.email}, ''),IFNULL(#{item.password}, ''),#{item.sex},#{item.birthday},#{item.school},#{item.personIntroduction},IFNULL(#{item.joinTime}, NOW()),#{item.lastLoginTime},#{item.lastLoginIp},IFNULL(#{item.status}, 0),#{item.noticeInfo},IFNULL(#{item.totalCoinCount}, 0),IFNULL(#{item.currentCoinCount}, 0),IFNULL(#{item.theme}, 0))
+			(#{item.userId},#{item.nickName},#{item.email},IFNULL(#{item.password}, ''),#{item.sex},#{item.birthday},#{item.school},#{item.personIntroduction},IFNULL(#{item.joinTime}, NOW()),#{item.lastLoginTime},#{item.lastLoginIp},IFNULL(#{item.status}, 0),#{item.noticeInfo},IFNULL(#{item.totalCoinCount}, 0),IFNULL(#{item.currentCoinCount}, 0),IFNULL(#{item.theme}, 0))
 		</foreach>
 		on DUPLICATE key update user_id = VALUES(user_id),nick_name = VALUES(nick_name),email = VALUES(email),password = VALUES(password),sex = VALUES(sex),birthday = VALUES(birthday),school = VALUES(school),person_introduction = VALUES(person_introduction),join_time = VALUES(join_time),last_login_time = VALUES(last_login_time),last_login_ip = VALUES(last_login_ip),status = VALUES(status),notice_info = VALUES(notice_info),total_coin_count = VALUES(total_coin_count),current_coin_count = VALUES(current_coin_count),theme = VALUES(theme)
 	</insert>

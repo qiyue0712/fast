@@ -94,7 +94,7 @@ public class BuildMapperXml {
                 columnBuilder.append(fieldInfo.getFieldName()).append(",");
             }
             String columnBuilderStr = columnBuilder.substring(0, columnBuilder.lastIndexOf(","));
-bw.write("\t\t" + columnBuilderStr);
+            bw.write("\t\t" + columnBuilderStr);
             bw.newLine();
             bw.write("\t</sql>");
             bw.newLine();
@@ -257,7 +257,7 @@ bw.write("\t\t" + columnBuilderStr);
                 }
                 // 对于主键和唯一索引字段，必须包含（不能为空）
                 if (indexFieldMap.get(fieldInfo.getFieldName()) != null) {
-                    bw.write("\t\t\t" + fieldInfo.getFieldName() + ",");
+bw.write("\t\t\t" + fieldInfo.getFieldName() + ",");
                 }
                 // 对于 NOT NULL 的非索引字段，总是包含
                 else if (fieldInfo.getIsNullable() != null && !fieldInfo.getIsNullable()) {
@@ -292,10 +292,10 @@ bw.write("\t\t" + columnBuilderStr);
                     if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "''";  // 字符串默认为空字符串
                     } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "0";   // 数字默认为0
                     } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "NOW()";  // 日期默认为当前时间
                     } else {
                         defaultValue = "''";  // 其他类型默认为空字符串
@@ -371,32 +371,10 @@ bw.write("\t\t" + columnBuilderStr);
                 if (primaryKeyMap.get(fieldInfo.getFieldName()) != null) {
                     bw.write("\t\t\t#{bean." + fieldInfo.getPropertyName() + "},");
                 }
-                // 对于唯一索引字段
+                // 对于唯一索引字段，不提供默认值，要求调用方必须显式设置
+                // 避免多条记录的唯一字段都使用相同的默认值导致冲突
                 else if (uniqueIndexMap.get(fieldInfo.getFieldName()) != null) {
-                    // 如果唯一索引是 NOT NULL，使用 IFNULL 提供默认值
-                    if (fieldInfo.getIsNullable() != null && !fieldInfo.getIsNullable()) {
-                        String defaultValue = "";
-                        if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "''";  // 字符串默认为空字符串
-                        } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                                   ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "0";   // 数字默认为0
-                        } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                                   ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "NOW()";  // 日期默认为当前时间
-                        } else {
-                            defaultValue = "''";  // 其他类型默认为空字符串
-                        }
-                        bw.write("\t\t\tIFNULL(#{bean." + fieldInfo.getPropertyName() + "}, " + defaultValue + "),");
-                    }
-                    // 如果唯一索引可以为 NULL，只在非null时包含
-                    else {
-                        bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
-                        bw.newLine();
-                        bw.write("\t\t\t\t#{bean." + fieldInfo.getPropertyName() + "},");
-                        bw.newLine();
-                        bw.write("\t\t\t</if>");
-                    }
+                    bw.write("\t\t\t#{bean." + fieldInfo.getPropertyName() + "},");
                 }
                 // 对于NOT NULL的非主键、非唯一索引字段，使用IFNULL提供默认值
                 else if (fieldInfo.getIsNullable() != null && !fieldInfo.getIsNullable()) {
@@ -404,10 +382,10 @@ bw.write("\t\t" + columnBuilderStr);
                     if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "''";  // 字符串默认为空字符串
                     } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "0";   // 数字默认为0
                     } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "NOW()";  // 日期默认为当前时间
                     } else {
                         defaultValue = "''";  // 其他类型默认为空字符串
@@ -482,10 +460,10 @@ bw.write("\t\t" + columnBuilderStr);
                     if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "''";  // 字符串默认为空字符串
                     } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "0";   // 数字默认为0
                     } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "NOW()";  // 日期默认为当前时间
                     } else {
                         defaultValue = "''";  // 其他类型默认为空字符串
@@ -527,28 +505,10 @@ bw.write("\t\t" + columnBuilderStr);
                 if (primaryKeyMap.get(fieldInfo.getFieldName()) != null) {
                     batchValuesBuilder.append("#{item." + fieldInfo.getPropertyName() + "},");
                 }
-                // 对于唯一索引字段，需要处理null值以避免重复键冲突
+                // 对于唯一索引字段，不提供默认值，要求调用方必须显式设置
+                // 这样可以避免多条记录的唯一字段都使用相同的默认值导致冲突
                 else if (uniqueIndexMap.get(fieldInfo.getFieldName()) != null) {
-                    // 如果唯一索引是 NOT NULL，使用 IFNULL 提供默认值
-                    if (fieldInfo.getIsNullable() != null && !fieldInfo.getIsNullable()) {
-                        String defaultValue = "";
-                        if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "''";  // 字符串默认为空字符串
-                        } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                                   ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "0";   // 数字默认为0
-                        } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                                   ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
-                            defaultValue = "NOW()";  // 日期默认为当前时间
-                        } else {
-                            defaultValue = "''";  // 其他类型默认为空字符串
-                        }
-                        batchValuesBuilder.append("IFNULL(#{item." + fieldInfo.getPropertyName() + "}, " + defaultValue + "),");
-                    }
-                    // 如果唯一索引可以为 NULL，直接使用值
-                    else {
-                        batchValuesBuilder.append("#{item." + fieldInfo.getPropertyName() + "},");
-                    }
+                    batchValuesBuilder.append("#{item." + fieldInfo.getPropertyName() + "},");
                 }
                 // 对于NOT NULL的非主键、非唯一索引字段，使用IFNULL提供默认值
                 else if (fieldInfo.getIsNullable() != null && !fieldInfo.getIsNullable()) {
@@ -556,10 +516,10 @@ bw.write("\t\t" + columnBuilderStr);
                     if (ArrayUtils.contains(Constants.SQL_STRING_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "''";  // 字符串默认为空字符串
                     } else if (ArrayUtils.contains(Constants.SQL_INTEGER_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_LONG_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "0";   // 数字默认为0
                     } else if (ArrayUtils.contains(Constants.SQL_DATE_TIME_TYPES, fieldInfo.getSqlType()) ||
-                               ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
+                            ArrayUtils.contains(Constants.SQL_DATE_TYPES, fieldInfo.getSqlType())) {
                         defaultValue = "NOW()";  // 日期默认为当前时间
                     } else {
                         defaultValue = "''";  // 其他类型默认为空字符串

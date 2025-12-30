@@ -39,9 +39,9 @@ public class MapperTest {
     @Test
     public void insert() {
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId("15");
-        userInfo.setEmail("1354432ewe1312e3efe");
-        userInfo.setNickName("test12342231fe32ffef");
+        userInfo.setUserId("19");
+        userInfo.setEmail("16432ewe1312e3efe");
+        userInfo.setNickName("te2331fe32ffef");
         this.userInfoMapper.insert(userInfo);
         System.out.println(userInfo.getUserId());
         System.out.println(userInfo);
@@ -52,6 +52,7 @@ public class MapperTest {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId("9");
         userInfo.setEmail("test12sqfe32376321sqs");
+        userInfo.setNickName("te2331fe32f");
         this.userInfoMapper.insertOrUpdate(userInfo);
         System.out.println(userInfo.getUserId());
         System.out.println(userInfo);
@@ -61,17 +62,17 @@ public class MapperTest {
     public void insertBatch() {
         List<UserInfo> userInfoList = new ArrayList<>();
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId("18");
-        userInfo.setEmail("135443213hghe3efffe");
-        userInfo.setNickName("tegj23fffeef");
+        userInfo.setUserId("20");
+        userInfo.setEmail("13093213hghe3efffe");
+        userInfo.setNickName("toj23fffeef");
         userInfo.setPassword("123456");
         userInfo.setJoinTime(new Date());
         userInfoList.add(userInfo);
 
         userInfo = new UserInfo();
-        userInfo.setUserId("17");
-        userInfo.setEmail("1354432jg54efffe");
-        userInfo.setNickName("tegf123fgfeef");
+        userInfo.setUserId("21");
+        userInfo.setEmail("1354ojg54efffe");
+        userInfo.setNickName("tegf123pgfeef");
         userInfoList.add(userInfo);
 
         userInfoMapper.insertBatch(userInfoList);
@@ -83,10 +84,11 @@ public class MapperTest {
         List<UserInfo> userInfoList = new ArrayList<>();
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId("18");
-        userInfo.setEmail("135443213hghe3efe");
+        userInfo.setNickName("tegj23fffe");
+        userInfo.setEmail("135443213hghe3efffe");
         userInfoList.add(userInfo);
 
         userInfoMapper.insertOrUpdateBatch(userInfoList);
-
+        System.out.println(userInfoList);
     }
 }
